@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3b0b1e">
+  <title>For Sneha — A Little Piece of My Heart ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+/* --- Letter page readability fix --- */
+#page-letter .envelope-area {
+  width: min(92vw, 760px);
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#page-letter .envelope {
+  position: relative;
+  width: min(92vw, 680px);
+  min-height: 220px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+#page-letter .letter-paper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(88vw, 620px);
+  max-height: min(68vh, 620px);
+  transform: translate(-50%, -42%) scale(.94);
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-radius: 14px;
+  box-sizing: border-box;
+  transition: transform .65s cubic-bezier(.2,.8,.2,1), opacity .45s ease, visibility 0s linear .65s;
+}
+
+#page-letter .letter-content {
+  max-height: min(68vh, 620px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding: clamp(24px, 4vw, 42px);
+  text-align: left;
+  scrollbar-width: thin;
+}
+
+#page-letter .envelope.is-open .letter-paper,
+#page-letter .envelope.open .letter-paper {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .45s ease;
+}
+
+#page-letter .envelope-flap,
+#page-letter .wax-seal {
+  transition: opacity .25s ease, transform .5s ease;
+}
+
+#page-letter .envelope.is-open .envelope-flap,
+#page-letter .envelope.open .envelope-flap {
+  transform: rotateX(-175deg);
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+/* Once the letter is open, remove the brown flap completely so it never
+   covers the first lines of the letter. */
+#page-letter .envelope.is-open .envelope-flap,
+#page-letter .envelope.open .envelope-flap {
+  display: none !important;
+}
+
+#page-letter .envelope.is-open .wax-seal,
+#page-letter .envelope.open .wax-seal {
+  opacity: 0;
+  transform: scale(.7);
+  pointer-events: none;
+}
+
+#page-letter .letter-content p {
+  margin: 0 0 1.05em;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+#page-letter .letter-content h3 {
+  margin-top: 0;
+}
+
+#page-letter .letter-sign {
+  padding-bottom: 8px;
+}
+
+/* Keep the page itself stable; only the opened letter scrolls. */
+#page-letter .page-content {
+  min-height: 0;
+}
+
+@media (max-width: 600px) {
+  #page-letter .envelope {
+    min-height: 190px;
+  }
+
+  #page-letter .letter-paper,
+  #page-letter .letter-content {
+    max-height: 64vh;
+  }
+
+  #page-letter .letter-content {
+    padding: 22px 20px 28px;
+    line-height: 1.65;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- floating hearts drifting behind everything -->
+  <div class="ambient-hearts" id="ambientHearts" aria-hidden="true"></div>
+
+  <p class="page-count" id="pageCount">1 / 9</p>
+
+  <main class="pages" id="pages">
+
+    <!-- ============ PAGE 1 — WELCOME ============ -->
+    <section class="page active" id="page-welcome">
+      <div class="stars" aria-hidden="true"></div>
+      <div class="page-content hero-content">
+        <p class="eyebrow">A birthday surprise, made just for you</p>
+        <h1>Happy Birthday,<br><span class="glow-name">sneha</span> 💖</h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <button class="next-btn" data-next="page-message">
+          <span>Begin</span>
+          <i>→</i>
+        </button>
+      </div>
+      <div class="floating-heart heart-one">♥</div>
+      <div class="floating-heart heart-two">♥</div>
+      <div class="floating-heart heart-three">♥</div>
+      <div class="floating-heart heart-four">♥</div>
+      <div class="floating-heart heart-five">♥</div>
+    </section>
+
+    <!-- ============ PAGE 2 — MESSAGE ============ -->
+    <section class="page" id="page-message">
+      <div class="page-content narrow">
+        <p class="eyebrow">A little something from me</p>
+        <h2>You are my favourite part of every day.</h2>
+        <p class="lead">
+          Sneha, gifts get unwrapped and forgotten, but I wanted to give you
+          something that stays — a small place on the internet that only
+          exists because of how much you mean to me. Every line here is
+          true, and every word is yours.
+
+          
+        </p>
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-welcome"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-reasons"><span>Keep going</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 3 — REASONS ============ -->
+    <section class="page" id="page-reasons">
+      <div class="page-content">
+        <div class="section-heading">
+          <p class="eyebrow">A few, out of many</p>
+          <h2>Reasons my heart picked you</h2>
+        </div>
+
+        <div class="reasons-grid">
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Your laugh</h3>
+            <p>The kind that sneaks up on you and somehow makes any room feel warmer.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>The little things</h3>
+            <p>How you remember tiny details about me I forget I even said.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Your kindness</h3>
+            <p>The way you care for people, quietly, without ever needing credit for it.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Ordinary days</h3>
+            <p>You turn the most boring afternoons & nights into moments I still think about.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Your honesty</h3>
+            <p>I never have to guess where I stand with you, and I love that.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Simply, you</h3>
+            <p>Out of every person in the world, I still find myself choosing you.</p>
+          </article>
+        </div>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-message"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-loveyou"><span>Keep going</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE — I LOVE YOU ============ -->
+    <section class="page" id="page-loveyou">
+      <div class="page-content narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Three words, endless meaning</p>
+          <h2>I love you, Sneha</h2>
+        </div>
+
+        <ul class="wishes-list">
+          <li><span>♥</span>I love you because you're the calm in every one of my chaotic days.</li>
+          <li><span>♥</span>I love you because you fight <em>for</em> us, never against us.</li>
+          <li><span>♥</span>I love you because you make me want to be a better version of myself.</li>
+          <li><span>♥</span>I love you because even your "hmm and hnn" over text can make my whole day better.</li>
+          <li><span>♥</span>I love you because you're my best friend before you're anything else.</li>
+          <li><span>♥</span>I love you because you stayed, even when it would've been easier not to.</li>
+          <li><span>♥</span>I love you because loving you feels like coming home, every single time.</li>
+        </ul>
+
+        <div class="heart-pulse" aria-hidden="true">♥</div>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-reasons"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-timeline"><span>Keep going</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 4 — OUR STORY ============ -->
+    <section class="page" id="page-timeline">
+      <div class="page-content narrow">
+        <div class="section-heading">
+          <p class="eyebrow">How we got here</p>
+          <h2>Our little story so far</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <p class="timeline-label">29th September 2024 first meet day....</p>
+            <p class="timeline-text">29th sep ko mile baate shuru hui pehle anjan thhe fir baat shuru hui 
+              dekhte he dekhte kab baate karke pyar badh gya pata he nahi chala apke batoki adat padhne lagi
+               fir kabhi baat kiye bager reh nahi paya.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <p class="timeline-label">The talks that followed</p>
+            <p class="timeline-text">Fir roj baat karte thhe tab pata he nai tha ki yahi apna life partner mil jayega .</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <p class="timeline-label">Stranger → Friend → Best Friend → life partner</p>
+            <p class="timeline-text">Pehlne anjan thhe fir friend bane uske bad best friends bane fir dekhte he dekhte kab life partner ban gaye pata bhi nahi chala.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <p class="timeline-label">29th October 2024 the love journey.</p>
+            <p class="timeline-text">The day it became official. The day "I like you" turned into "I'm yours," and our story truly began. 
+              yahi se apna safar shury hua or abtak achese ladte jhagadte ruthate mu fulate hue manate hue sath hai or hamesha rahene 😭
+            </p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <p class="timeline-label">Today</p>
+            <p class="timeline-text">Aaj ladai karte hai muh fulate hai ruthate hai manate ek dusreko samjte hai samjhate hai ase karte karte aj ham 
+              yahatak poche hai mai chata hu agge bhi apna safer asa he ho ek din future mai ham sath sath rahe khushise 
+              like ek chotasa ghaapna ek bhondu bila bhi or roj subha subha apke darshan bhi honge ayee 🫠</p>
+          </div>
+        </div>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-loveyou"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-distance"><span>Keep going</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE — LONG DISTANCE ============ -->
+    <section class="page" id="page-distance">
+      <div class="page-content">
+        <div class="section-heading">
+          <p class="eyebrow">Miles apart, hearts together</p>
+          <h2>Ours is a long distance love</h2>
+        </div>
+
+        <p class="lead">
+          We don't get the easy things — no spontaneous meetups, no
+          walking each other home, no falling asleep on a call without
+          it cutting off. Just screens, time zones we have to work around,
+          and the wait for the next time we get to see each other. But
+          somehow, none of that has made "us" feel any smaller.
+        </p>
+
+        <div class="reasons-grid">
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Patience</h3>
+            <p>Waiting for your call, waiting to meet — distance taught us that some things are worth the wait.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Talking, always</h3>
+            <p>No goodnight text goes unsent. We say more to each other than most couples who meet every day.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>Trust</h3>
+            <p>Distance tests everything it's supposed to — and what we have only got steadier because of it.</p>
+          </article>
+          <article class="reason-card">
+            <span class="reason-mark">♥</span>
+            <h3>The missing</h3>
+            <p>The ache of missing you is real, but it makes every reunion feel like the best day of my life.</p>
+          </article>
+        </div>
+
+        <p class="lead">
+          So here's to the calls that go on too long, the countdowns to
+          when we'll meet next, and the love that's somehow only grown
+          bigger with all these miles in between. One day, there'll be no
+          distance left to talk about — just us.
+        </p>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-timeline"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-wishes"><span>Keep going</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 5 — WISHES ============ -->
+    <section class="page" id="page-wishes">
+      <div class="page-content narrow">
+        <div class="section-heading">
+          <p class="eyebrow">On your birthday</p>
+          <h2>A few wishes for you</h2>
+        </div>
+
+        <ul class="wishes-list">
+          <li><span>♥</span>May this year hand you more reasons to smile than to worry.</li>
+          <li><span>♥</span>May you always know your own worth, even on the quiet days.</li>
+          <li><span>♥</span>May the people around you love you as much as you deserve. 
+          Just make sure they don't love you like I do, keep this in mind ok 🥰</li>
+          <li><span>♥</span>May your dreams get a little closer, one ordinary day at a time.</li>
+          <li><span>♥</span>And may you never forget how deeply, endlessly loved you are.</li>
+        </ul>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-distance"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-letter"><span>One more thing</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 6 — LETTER ============ -->
+    <section class="page" id="page-letter">
+      <div class="page-content">
+        <div class="section-heading">
+          <p class="eyebrow">Open when you're ready</p>
+          <h2>A letter, sealed with love</h2>
+        </div>
+
+        <div class="envelope-area">
+          <button class="envelope" id="envelope" aria-expanded="false" aria-label="Open the birthday letter">
+            <div class="envelope-back"></div>
+
+            <article class="letter-paper">
+              <div class="letter-content">
+                <p class="letter-date">For MY Sneha, on your birthday</p>
+                <h3>My dearest Sneha,</h3>
+
+                <p>
+                  Happy birthday to the person who makes ordinary days feel
+                  like something worth remembering, just by being in them.
+                </p>
+
+                <p>
+                  I hope you never forget how wonderful you are. Your smile,
+                  your little habits, your kindness, and all the tiny things
+                  that make you, <em>you</em> mean more to me than words can
+                  really hold.
+                </p>
+
+                <p>
+                  I don't know what every tomorrow looks like, but I know I
+                  want to fill it with more of this — more laughs, more silly
+                  arguments over nothing, more late-night talks, and more
+                  memories we'll be grinning about years from now.
+                </p>
+
+                <p>
+                  So today, of all days, I hope you feel exactly as loved as
+                  you deserve. May this new year bring you softness, joy,
+                  confidence, and every quiet little thing your heart has
+                  been hoping for.
+                </p>
+
+                <p>
+                  Thank you for being you, Sneha. You're not just a part of
+                  my story — you're my favourite part of it.
+                </p>
+
+                <p>Ab officially aap 18+ hoagye matlab adult bangaye ye janke 
+                  mujhe acha lagra hai bohot ab relationship mai dono adult hai to 
+                minor se adult tak adult se elder tak safer rahega apna hamesha sath rahenge ab
+              bina koi problem ke ab to bina koi problem ke huge or kiss bhi mang sakta hu mai 
+            aap to adult hoagye isliye pehle jesa nai chupaug ab romantic bhi banunga thoda thoda 😚 </p>
+
+                <p> once again dil se happy birthday mari jaan sada meri raho or hamesha khush raho 
+                  jaha bhi rahoge khush rehna ye bhondu ladka apko roj yaad karta rahega
+                  uskeliye ap he uski sari khushiya ho. Or pata hai kuch log dukhi honepe unke pass 
+                  jata hai jo unhe samche or acha feel karvay or khush hone ke baad kisi or ke pass
+                  jata hai lakin mareliye ye dono insan aap he ho. mai khush hu kiuki ye dono mujhe 
+                  apke he pass milta hai sukun dukh mereliye aap he ho. mere life mai ane keliye 
+                  dill se shukriya..... i love you darling 💕 💞
+                </p>
+                <p class="letter-sign">Always yours,<br><span>Tanish ❤️</span></p>
+              </div>
+            </article>
+
+            <div class="envelope-flap"></div>
+            <div class="wax-seal" aria-hidden="true"><span>♥</span></div>
+          </button>
+
+          <p class="envelope-hint" id="envelopeHint">Tap the seal to open your letter</p>
+        </div>
+
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-wishes"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-final"><span>Last page</span><i>→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 7 — FINAL ============ -->
+    <section class="page" id="page-final">
+      <div class="page-content narrow">
+        <p class="eyebrow">One last thing</p>
+        <h2>If I could wrap up a feeling and hand it to you...</h2>
+        <p class="lead">
+          It would be this: <strong>you are deeply, quietly, endlessly loved.</strong>
+          Happy birthday, Sneha. May your smile always find a reason to stay.
+        </p>
+        <div class="heart-pulse" aria-hidden="true">♥</div>
+        <div class="page-buttons">
+          <button class="back-btn" data-next="page-letter"><i>←</i><span>Back</span></button>
+          <button class="next-btn" data-next="page-welcome"><span>Read it again</span><i>↻</i></button>
+        </div>
+        <footer class="page-footer">
+          <p>Made with love, Tanish — just for Sneha.</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
